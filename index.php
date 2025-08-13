@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acertijos para Seguidores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+}
+
+.intro {
+    text-align: center;
+    font-style: italic;
+}
+
+.riddle {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border-left: 4px solid #3498db;
+}
+
+.riddle h2 {
+    color: #3498db;
+}
+
+input {
+    padding: 8px;
+    width: 70%;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    padding: 8px 15px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+.hint {
+    font-size: 0.9em;
+    color: #e74c3c;
+    margin-top: 10px;
+}
+
+</style>
+<body>
+    <div class="container">
+        <h1>🔎 Acertijos para Ti</h1>
+        <p class="intro">Resuelve estos desafíos y demuestra tu ingenio. ¡Cada acertijo te llevará más cerca del premio final!</p>
+        
+        <div class="riddle-container">
+            <div class="riddle" id="riddle1">
+                <h2>Acertijo #1</h2>
+                <p>"Blanco por dentro, verde por fuera. Si no sabes, espera."</p>
+                <input type="text" id="answer1" placeholder="Tu respuesta...">
+                <button onclick="checkAnswer(1)">Comprobar</button>
+                <p id="hint1" class="hint"></p>
+            </div>
+
+            <div class="riddle" id="riddle2" style="display: none;">
+                <h2>Acertijo #2 (Encuentra el código oculto)</h2>
+                <p>Inspecciona esta página cuidadosamente... ¿Ves algo escondido?</p>
+                <input type="text" id="answer2" placeholder="Busca pistas...">
+                <button onclick="checkAnswer(2)">Comprobar</button>
+                <p id="hint2" class="hint"></p>
+            </div>
+
+            <div class="riddle" id="final-message" style="display: none;">
+                <h2>¡Felicidades! 🎉</h2>
+                <p>Has resuelto todos los acertijos. ¡Eres un genio!</p>
+                <button onclick="resetGame()">Volver a empezar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pista oculta en el HTML (para el acertijo 2) -->
+    <div style="opacity: 0.01; position: absolute; top: 0; left: 0;">Pista: El código es "JS2024"</div>
+
+    <script>
+        function checkAnswer(riddleNumber) {
+    const answers = {
+        1: "pera",  // Respuesta del acertijo 1
+        2: "bibo"  // Respuesta del acertijo 2 (pista oculta en HTML)
+    };
+
+    const userAnswer = document.getElementById(`answer${riddleNumber}`).value.toLowerCase();
+    const hintElement = document.getElementById(`hint${riddleNumber}`);
+
+    if (userAnswer === answers[riddleNumber]) {
+        hintElement.textContent = "¡Correcto! 🎉";
+        hintElement.style.color = "#2ecc71";
+        
+        // Mostrar siguiente acertijo o mensaje final
+        if (riddleNumber === 1) {
+            document.getElementById("riddle1").style.display = "none";
+            document.getElementById("riddle2").style.display = "block";
+        } else if (riddleNumber === 2) {
+            document.getElementById("riddle2").style.display = "none";
+            document.getElementById("final-message").style.display = "block";
+        }
+    } else {
+        hintElement.textContent = "Incorrecto. Sigue intentando o busca pistas.";
+        hintElement.style.color = "#e74c3c";
+    }
+}
+
+function resetGame() {
+    location.reload(); // Recarga la página para reiniciar
+}
+    </script>
+</body>
+</html>
